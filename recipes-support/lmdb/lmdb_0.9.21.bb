@@ -26,4 +26,9 @@ do_install() {
     oe_runmake DESTDIR=${D} prefix=${prefix} libprefix=${libdir} manprefix=${mandir} install
     chown -R root:root ${D}${bindir}
     chown -R root:root ${D}${libdir}
+
+    mv liblmdb.so.0.0.0 ${D}${libdir}
+    cd  ${D}${libdir}
+    ln -s liblmdb.so.0.0.0 liblmdb.so
+    rm -rf ${D}/usr/lib
 }
